@@ -58,8 +58,20 @@ rememberMyFilms: function() {
 
    writeYourGenres: function() {
       for (let i = 1; i <= 3; i++) {
-         const genre = prompt(`Ваш любимый жанр под номером ${i}?`, '');
+         let genre = prompt(`Ваш любимый жанр под номером ${i}?`, '').toLowerCase();
+
+      if(genre == '' || genre === null) {
+         console.log("Вы не ввели данные");
+         i--;
+      } else {
          personalMovieDB.genres[i - 1] = genre;
+         personalMovieDB.genres.sort();
+       }
+
       }
+
+      personalMovieDB.genres.forEach((item,i) => {
+        console.log(`Любимый жанр ${i + 1} -это ${item}`);
+      });
    }
 };
